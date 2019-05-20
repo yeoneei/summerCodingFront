@@ -1,0 +1,10 @@
+.ListWrapper {
+    width: 52rem;
+    margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+    .ListWrapper {
+        width: 90%;    
+    }
+}
