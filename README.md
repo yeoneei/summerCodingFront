@@ -1,68 +1,129 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# summerCodingBack
 
-## Available Scripts
+## git 설치하기
+- 리눅스에 패키지로 Git 설치하기
+~~~
+$ yum install git-core
+~~~
+- apt-get 이용
+~~~
+$ apt-get install git
+~~~
 
-In the project directory, you can run:
+## Back-end 소스코드 다운받기
+- https://github.com/yeoneei/summerCodingBack/tree/master 에 들어가서 소스코드 다운받기
+~~~
+$git clone https://github.com/yeoneei/summerCodingBack.git
+~~~
 
-### `npm start`
+## Back-end 파일 설정하기
+- npm과 node 설치
+    1. crul과 wget으로 npm 설치
+    ~~~
+    # curl으로 설치하기
+    $curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    # wget으로 설치하기
+    $wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+    ~~~
+    - .bash_profile에 반영
+    ~~~
+    $source .bash_profile
+    ~~~
+    2. node 설치
+    - 자동으로 npm 설치
+    ~~~
+    # nodejs v9.4.0 설치
+    $nvm install v9.4.0
+    # v9.4.0을 사용한다는 의미. 다른 버전으로 바꾸는 것도 가능.
+    $nvm use v9.4.0
+    ~~~
+    - .bash_profile에 반영
+    ~~~
+    $source .bash_profile
+    ~~~
+    - 캐시삭제하고 n모듈 설치 후 n모듈을 사용하여 Node.js를 설치
+    ~~~
+    #sudo npm cache clean --force
+    #sudo npm install -g n
+    #sudo n stable
+    ~~~
+    - npm 업그레이드
+    ~~~
+    #sudo npm install -g npm
+    ~~~
+- node module 다운받기
+~~~
+$npm install 
+~~~  
+ 
+## DB설정
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- 루트 디렉토리에 `cofig` 디렉토리 생성
+- `config.js` 파일 생성
+~~~
+const mysql = require('promise-mysql');
 
-### `npm test`
+const dbConfig = {
+    host: 'DB주소입력',
+    port: 3306,
+    user: '사용자 이름 입력',
+    password: '비밀번호 입력',
+    database: 'DB'스키마 입력,
+}
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+module.exports = mysql.createPool(dbConfig);
+~~~
+- DB 스키마
+~~~
+idx int(11) AI PK
+title varchar(45)
+content varchar(200)
+prior int(10)
+complete int(1)
+dueDate date
+~~~
 
-### `npm run build`
+## Back-end 시작하기
+- 루트 디렉토리 들어가서 명령어 실행
+~~~
+$npm start
+~~~
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## EndPoint
+- TodoList 모두 가져오기
+    - `GET /list/all`
+- TodoList 하나 생성하기
+    - `POST /list`
+    - title(필수), content(필수),prior,complete ,dueDate
+- TodoList 하나 수정하기
+    - `POST /list/modiy`
+    - title(필수), content(필수),prior,complete ,dueDate
+- TodoList 하나 삭제
+    - `POST /list/delete`
+    -  idx(필수)
+- 마감 지난 TodoList 가져오기
+    - `GET /list/expire`
+- TodoList 하나 완료 처리하기
+    - `POST /list/complete`
+    - idx(필수)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Front 다운받기
+- https://github.com/yeoneei/summerCodingFront 주소의 파일 git clone 하기
+~~~
+$git clone https://github.com/yeoneei/summerCodingFront.git
+~~~
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 노드 모듈 다운 받기
+~~~
+$npm install
+~~~
+- 루트 파일 들어가서 시작하기
+~~~
+$npm start
+~~~
 
-### `npm run eject`
+## 주의 사항
+1. TodoList 수정시 modify누르고 취소 누르기
+2. 날짜 입력은 05-25 (5월 25일)이런식으로
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
