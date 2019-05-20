@@ -75,11 +75,11 @@ class TodoList extends React.Component{
                                         console.log(err);
                                     }finally{
                                         
-                                        onclose();
+                                        window.location.reload();
 
                                     }
 
-                                }}>{todo.complete} </Button>
+                                }}>{(todo.complete==1?'O':'X')} </Button>
                         </Button>}
                         modal>
                         {close=>(

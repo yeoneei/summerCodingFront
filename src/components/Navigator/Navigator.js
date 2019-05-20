@@ -48,7 +48,7 @@ class Navigate extends React.Component{
                                     onChange={this.handleChange('dueDate')}/>
                                  </Grid>
                                 <Grid item xs={1}></Grid>
-                                <Grid item xs={2}>prior </Grid>
+                                <Grid item xs={2}>prior</Grid>
                                 <Grid item xs={2}>
                                     <TextField
                                     id='prior'
@@ -114,7 +114,7 @@ class Navigate extends React.Component{
                     </div>
                     )}
             </Popup>
-            /> 
+            
         </div>
         );
 
