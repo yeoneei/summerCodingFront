@@ -41,7 +41,7 @@ class Navigate extends React.Component{
                         <from >
                             <Grid container xs={12}>
                                 <Grid item xs={1}></Grid>
-                                <Grid item xs={2}>dueDate </Grid>
+                                <Grid item xs={2} justify="center">dueDate </Grid>
                                 <Grid item xs={2}>
                                     <TextField
                                     id='dueDate'
@@ -59,7 +59,7 @@ class Navigate extends React.Component{
                             <br/>
                             <Grid container xs={12}>
                                 <Grid item xs={1}></Grid>
-                                <Grid item xs={2}>title</Grid>
+                                <Grid item xs={2} justify="center">title</Grid>
                                 <Grid item xs={7}>
                                     <TextField
                                     onChange={this.handleChange('title')}
@@ -78,7 +78,7 @@ class Navigate extends React.Component{
 
                             <Grid container xs={12}>
                                 <Grid item xs={3}></Grid>
-                                <Grid item xs={8}>
+                                <Grid item xs={8} justify="center">
                                     <TextField
                                     onChange={this.handleChange('content')}
                                     id='title'
@@ -91,7 +91,7 @@ class Navigate extends React.Component{
                             <Grid container xs={12} >
                                 <Grid item xs={6} >
                                     <MButton className="modify" onClick={async()=>{
-                                        const updateQuery = "http://localhost:8080/list"
+                                        const updateQuery = "http://15.164.141.146:8080/list"
                                         var result;
                                         try{
                                             result = await axios.post(updateQuery,{
@@ -103,7 +103,8 @@ class Navigate extends React.Component{
                                         }catch(err){
                                             console.log(err);
                                         }finally{
-                                            console.log(result);
+                                            close();
+                                            window.location.reload();
                                         }
                                     }}>new List</MButton>
                                     

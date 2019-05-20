@@ -4,7 +4,7 @@ import Navigator from './Navigator/Navigator';
 import Board from './Board/Board';
 import TodolistBoard from './TodolistBoard/TodolistBoard';
 import TodoList from'./TodoList/TodoList';
-import CheckTodo from'./CheckTodo/CheckTodo';
+
 
 export {
     Header,
@@ -13,5 +13,5 @@ export {
     Board,
     TodolistBoard,
     TodoList,
-    CheckTodo
+
 };

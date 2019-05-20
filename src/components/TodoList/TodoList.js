@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import Popup from 'reactjs-popup'
 
 
-const getAllTodoListEndPoint = "http://localhost:8080/list/all";
+const getAllTodoListEndPoint = "http://15.164.141.146:8080/list/all";
 
 
 class TodoList extends React.Component{
@@ -66,7 +66,7 @@ class TodoList extends React.Component{
                                 <Grid item xs={8}>{todo.content}</Grid>
                                 <Grid item xs={1}>{todo.prior}</Grid>
                                 <Button item xs={1} onClick={async()=>{
-                                    const completeQuery = "http://localhost:8080/list/complete";
+                                    const completeQuery = "http://15.164.141.146:8080/list/complete";
                                     try{
                                         await axios.post(completeQuery,{
                                             idx:idx,
@@ -74,9 +74,7 @@ class TodoList extends React.Component{
                                     }catch(err){
                                         console.log(err);
                                     }finally{
-                                        
                                         window.location.reload();
-
                                     }
 
                                 }}>{(todo.complete==1?'O':'X')} </Button>
@@ -141,7 +139,7 @@ class TodoList extends React.Component{
                                     <Grid container xs={12} >
                                         <Grid item xs={4} >
                                             <Button className="modify" onClick={async()=>{
-                                                const updateQuery = "http://localhost:8080/list/modiy"
+                                                const updateQuery = "http://15.164.141.146:8080/list/modiy"
                                                 var result;
                                                 try{
                                                     dueDate = (this.state.dueDate==""? dueDate:this.state.dueDate);
@@ -156,14 +154,15 @@ class TodoList extends React.Component{
                                                 }catch(err){
                                                     console.log(err);
                                                 }finally{
-                                                    console.log(result);
-                                                    
+                                                    console.log("이거 왜안대?");
+                                                    close();
+                                                    window.location.reload();
                                                 }
                                             }}>modify</Button>
                                         </Grid>
                                         <Grid item xs={4}>
                                             <Button onClick={async()=>{
-                                                const removeQuery = "http://localhost:8080/list/delete"
+                                                const removeQuery = "http://15.164.141.146:8080/list/delete"
                                                 var result;
                                                 try{
                                                     result = await axios.post(removeQuery,{
@@ -173,12 +172,16 @@ class TodoList extends React.Component{
                                                     console.log(err);
                                                 }finally{
                                                     console.log(result);
+                                                    close();
                                                     window.location.reload();
                                                 }
                                             }}>remove</Button>
                                         </Grid>
                                         <Grid item xs={4}>
-                                            <Button className="close" onClick={close} justify='center' >close</Button>
+                                            <Button className="close" onClick={()=>{
+                                                close();
+                                                window.location.reload();
+                                            }} justify='center' >close</Button>
                                         </Grid>
                                     </Grid>
                                 </from>
